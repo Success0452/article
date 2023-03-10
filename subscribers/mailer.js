@@ -1,5 +1,6 @@
 const mailer = require("nodemailer")
 
+/* implement transport config function */
 const transporter = mailer.createTransport({
     service: "gmail",
     auth: {
@@ -12,6 +13,7 @@ const transporter = mailer.createTransport({
     }
 });
 
+/* function to send email to user */
 const SendMail = (to, subject, html) => {
     let mailOptions = {
         to: to,
@@ -30,6 +32,7 @@ const SendMail = (to, subject, html) => {
     });
 }
 
+/* function send email to multiple users */
 const SendMutipleMail = (to, subject, html) => {
     let mailOptions = {
         to: to,
@@ -48,6 +51,7 @@ const SendMutipleMail = (to, subject, html) => {
     });
 }
 
+/* exports */
 module.exports = {
     SendMail,
     SendMutipleMail

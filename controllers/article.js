@@ -1,8 +1,12 @@
+/* imports */
 const Article = require('../models/article');
 const Comment = require('../models/comments');
 const UserModel = require('../models/users');
 const sequelize = require('../config/helper');
 
+/* function to create article as a verified user*/
+/* POST */
+/* /article/create */
 const post = async(req, res, next) => {
 
     if(!req.body.description || !req.body.title || !req.body.subject ){
@@ -28,6 +32,9 @@ const post = async(req, res, next) => {
     })
 }
 
+/* function to add comment to a posted article as a verified user */
+/* POST */ 
+/* /article/add_comment */
 const add_comment = async(req, res, next) => {
     if(!req.body.comment, !req.body.articleId){
         return res.status(400).json({ msg: "confirm your details"})
@@ -60,6 +67,9 @@ const add_comment = async(req, res, next) => {
     res.status(200).json({ msg: "comment added"});
 }
 
+/* function to view a particular comment as a verified user */
+/* GET */
+/* /article/view_comment */
 const view_comments = async(req, res, next) => {
 
     if(!req.params.commentId){
@@ -87,6 +97,9 @@ const view_comments = async(req, res, next) => {
     res.status(200).json(comment.dataValues);
 }
 
+/* finction to view a particular article as a verified user */
+/* GET */
+/* /article/view_article */
 const view_article = async(req, res, next) => {
 
     if(!req.params.articleId){
@@ -119,7 +132,9 @@ const view_article = async(req, res, next) => {
     });
 }
 
-
+/* function to edit a particular article as a verified user*/
+/* PATCH */
+/* /article/edit_article */
 const edit_article = async(req, res, next) => {
 
     if(!req.params.articleId || !req.body.description){
@@ -151,6 +166,9 @@ const edit_article = async(req, res, next) => {
     }).catch((error) => { res.status(201).json({ msg: error.message }) })
 }
 
+/* function to delete a particular article as a verified user */
+/* DELETE */
+/* /article/delete_article*/
 const delete_article = async(req, res, next) => {
 
     if(!req.body.articleId){
@@ -181,6 +199,9 @@ const delete_article = async(req, res, next) => {
     }).catch((error) => { res.status(201).json({ msg: error.message }) })
 }
 
+/* function to view all posted article with their respective comment as a verified user */
+/* GET */
+/* /article/view_all_article */
 const view_all_article = async(req, res, next) => {
     
     const user = await UserModel.findOne({ where: { id: req.header.id }});
@@ -214,7 +235,7 @@ const view_all_article = async(req, res, next) => {
     res.status(200).json(articlesList);
 }
 
-
+/* exports */
 module.exports = { 
     post, 
     add_comment, 

@@ -1,3 +1,4 @@
+/* imports */
 const Sequelize = require('sequelize');
 
 // Connect to the database
@@ -12,9 +13,11 @@ try{
     logging: false
   });
 
+  /* exports */
   module.exports = sequelize;
   
 }catch(err){
+  /* console error*/
   console.log(err.message);
 }
 

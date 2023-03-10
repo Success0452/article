@@ -1,3 +1,4 @@
+/* imports */
 const Sequelize = require('sequelize');
 const sequelize = require('../config/helper');
 
@@ -23,4 +24,5 @@ const Article = sequelize.define('article', {
 	updatedAt: "updated_at",
 });
 
+/* exports */
 module.exports = Article;

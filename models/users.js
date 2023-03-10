@@ -1,3 +1,4 @@
+/* imports */
 const Sequelize = require('sequelize');
 const sequelize = require('../config/helper');
 
@@ -26,4 +27,5 @@ const User = sequelize.define('users', {
 	updatedAt: "updated_at",
 });
 
+/* exports */
 module.exports = User;

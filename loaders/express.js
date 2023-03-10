@@ -1,3 +1,4 @@
+/* imports */
 require('dotenv').config();
 const express = require('express');
 const compression = require('compression');
@@ -6,6 +7,7 @@ const userRoute = require('../routes/users');
 const articleRoute = require('../routes/article');
 require('color');
 
+/* class to initiate express middlewares*/
 class ExpressLoader{
     constructor(){
         const app = express();
@@ -31,10 +33,14 @@ class ExpressLoader{
           next();
       });
 
+        /* routes calling */
         app.use("/api/users", userRoute);
         app.use("/api/article", articleRoute);
 
+        /* ports variable */
         let port = process.env.PORT || 3000;
+
+        /* notify user of express start */
         this.server = app.listen(port, () => {
             logger.info(`Express running, now listening on port ${port}`);
             console.log(`Express running, now listening on port ${port}`,);
@@ -74,5 +80,5 @@ class ExpressLoader{
     }
 }
 
-
+/* exports*/
 module.exports = ExpressLoader;

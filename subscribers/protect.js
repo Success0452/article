@@ -1,7 +1,9 @@
+/* imports */
 require("dotenv").config()
 const User = require("../models/users");
 const jwt = require("jsonwebtoken")
 
+/* function to get details back from generated token */
 const protect = async(req, res, next) => {
     let token;
     const auth = req.headers.authorization;
@@ -18,4 +20,5 @@ const protect = async(req, res, next) => {
     next()
 }
 
+/* exports */
 module.exports = protect;
