@@ -210,13 +210,13 @@ const view_all_article = async(req, res, next) => {
         return res.status(400).json({ msg: 'user does not exit'});
     }
     
-    const article =  await Article.findAll();
-
-    const comment = await Comment.findAll({ where: {parent_id: req.body.articleId}});
+    const article =  await Article.findAll({ 
+        order: [
+        ['created_at', 'ASC']
+    ],});
 
     console.log(article[0].dataValues);
 
-    let commentsList = [];
     let articlesList = [];
 
     for(let i = 0; i < article.length; i++){
