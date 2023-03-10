@@ -138,6 +138,10 @@ const edit_article = async(req, res, next) => {
         return res.status(400).json({ msg: 'article does not exit'});
     }
 
+    if(article.dataValues.posted_by !== user.dataValues.email){
+        return res.status(301).json({ msg: "you have no permission to edit this article"})
+    } 
+
     await Article.update({
         description: req.body.description
     }, {
@@ -164,6 +168,10 @@ const delete_article = async(req, res, next) => {
     if(!article){
         return res.status(400).json({ msg: 'article does not exit'});
     }
+
+    if(article.dataValues.posted_by !== user.dataValues.email){
+        return res.status(301).json({ msg: "you have no permission to delete this article"})
+    } 
 
     await Article.destroy({ where: { id: article.id } })
     .then( async() => {
