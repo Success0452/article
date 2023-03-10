@@ -25,7 +25,7 @@
 
 
 #### Article Api is deployed on render.com with the following details
-##### BASE URL: 'https://article-t6vi.onrender.com'
+##### BASE URL: 'https://article-t6vi.onrender.com/api'
 
 #### Routes Currently Available
 
