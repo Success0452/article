@@ -33,7 +33,7 @@ class ExpressLoader{
           next();
       });
 
-      app.get('/api', () => {
+      app.get('/api', (req, res) => {
         return res.status(200).send("<h1> Welcome to Article Api Page </h1>")
       });
 
